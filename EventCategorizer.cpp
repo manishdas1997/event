@@ -72,14 +72,7 @@ bool EventCategorizer::exec()
       for (uint i = 0; i < timeWindow->getNumberOfEvents(); i++)
       {
       const auto& event = dynamic_cast<const JPetEvent&>(timeWindow->operator[](i));    
-      
-      for(int i=0;i<event.getHits().size();i++)
-      {
-		double energy= event.getHits().getToT()
-		getStatistics().fillHistogram("raw_TOT_check", energy);
-		
-		  }
-      //manishdas(event); 
+      manishdas(event); 
     }
     saveEvents(events);
   }
@@ -115,9 +108,6 @@ void EventCategorizer::initialiseHistograms()
 		  			"Multiplicity", "Counts"
 		  );
 		  
-getStatistics().createHistogramWithAxes( new TH1D("raw_TOT_check", "Time over Threshold", 1000, 0, 9000000),
-		 			"TOT [ps]", "Counts" 
-		  );
   getStatistics().createHistogramWithAxes( new TH1D("raw_TOT", "Time over Threshold", 1000, 0, 9000000),
 		 			"TOT [ps]", "Counts" 
 		  );
